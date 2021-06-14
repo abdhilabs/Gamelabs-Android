@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    def globalConfig = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfig.androidCompileSdkVersion
+    buildToolsVersion globalConfig.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.abdhilabs.gamelabs"
+        minSdkVersion globalConfig.androidMinSdkVersion
+        targetSdkVersion globalConfig.androidTargerSdkVersion
+        versionCode globalConfig.androidVersionCode
+        versionName globalConfig.androidVersionName
+        resValue "string", "app_name", "Gamelabs"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            buildConfigField "String", "API_KEY", API_KEY
+            buildConfigField "String", "API_BASE_URL", BASE_URL
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", API_KEY
+            buildConfigField "String", "API_BASE_URL", BASE_URL
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    dynamicFeatures = [':favourite']
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(":core-android")
+    implementation project(":home")
+    implementation project(":detail")
+    rootProject.appDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+}

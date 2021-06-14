@@ -1,0 +1,10 @@
+<resources>
+    <string name="title_favourite">Favourite</string>
+    <string name="title_detail">Detail Game</string>
+
+    <string name="text_release_date">Release Date: %s</string>
+    <string name="text_rating">User Score: %s</string>
+    <string name="text_genres">Genres: %s</string>
+    <string name="text_overview"><b>Overview:</b> \n\t%s</string>
+    <string name="text_error_empty_favorite">You haven\'t any favorite yet</string>
+</resources>

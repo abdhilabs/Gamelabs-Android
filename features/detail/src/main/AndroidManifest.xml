@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.abdhilabs.detail">
+
+    <application>
+        <activity android:name=".ui.DetailGameActivity"
+            android:theme="@style/Theme.Gamelabs"/>
+    </application>
+</manifest>

@@ -1,0 +1,247 @@
+ext {
+    // Android Core
+    androidCompileSdkVersion = 30
+    androidBuildToolsVersion = "30.0.3"
+    androidMinSdkVersion = 22
+    androidTargerSdkVersion = 30
+    androidVersionCode = 1
+    androidVersionName = "1.0.1"
+
+    // Android Libraries
+    androidxVersion = '1.3.0'
+    constraintLayoutVersion = '2.0.4'
+    materialDesignVersion = '1.3.0'
+
+    // Security Libraries
+    securityCrypto = '1.1.0-alpha02'
+
+    // Network Libraries
+    retrofitVersion = '2.8.1'
+    okhttpVersion = '3.12.10'
+    moshiVersion = '1.9.2'
+    coroutineAdapter = '0.9.2'
+
+    // LocalDb Libraries
+    roomVersion = '2.2.6'
+
+    // Lifecycle Libraries
+    lifecycleVersion = '2.2.0'
+
+    // Coroutine Libraries
+    coroutineVersion = '1.3.5'
+
+    // Navigation Libraries
+    navigationVersion = '2.3.5'
+
+    // DI Libraries
+    daggerVersion = '2.34'
+    javaxVersion = '1'
+
+    // Deeplink Libraries
+    deeplinkDispatchVersion = '4.1.0'
+
+    // Testing Libraries
+    jUnitVersion = '4.12'
+    mockitoVersion = '3.0.0'
+
+    // Other Libraries
+    timberVersion = '4.7.1'
+    glideVersion = '4.11.0'
+
+    def androidLibs = [
+            androidCore       : [group: 'androidx.core', name: 'core-ktx', version: '1.5.0'],
+            appCompat         : [group: 'androidx.appcompat', name: 'appcompat', version: androidxVersion],
+            constraintLayout  : [group: 'androidx.constraintlayout', name: 'constraintlayout', version: constraintLayoutVersion],
+            materialDesign    : [group: 'com.google.android.material', name: 'material', version: materialDesignVersion],
+            swiperefreshlayout: [group: 'androidx.swiperefreshlayout', name: 'swiperefreshlayout', version: '1.1.0']
+    ]
+
+    def securityLibs = [
+            securityCrypto: [group: 'androidx.security', name: 'security-crypto', version: securityCrypto]
+    ]
+
+    def networkLibs = [
+            moshi            : [group: 'com.squareup.moshi', name: 'moshi', version: moshiVersion],
+            moshiKotlin      : [group: 'com.squareup.moshi', name: 'moshi-kotlin', version: moshiVersion],
+            retrofit         : [group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofitVersion],
+            retrofitAdapter  : [group: 'com.jakewharton.retrofit', name: 'retrofit2-kotlin-coroutines-adapter', version: coroutineAdapter],
+            retrofitConverter: [group: 'com.squareup.retrofit2', name: 'converter-moshi', version: retrofitVersion],
+            okhttp           : [group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttpVersion]
+    ]
+
+    def lifecycleLibs = [
+            lifecycleViewmodel: [group: 'androidx.lifecycle', name: 'lifecycle-viewmodel-ktx', version: lifecycleVersion],
+            lifecycleRuntime  : [group: 'androidx.lifecycle', name: 'lifecycle-runtime-ktx', version: lifecycleVersion],
+            lifecycleExt      : [group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: lifecycleVersion],
+            lifecycleLivedata : [group: 'androidx.lifecycle', name: 'lifecycle-livedata-ktx', version: lifecycleVersion],
+            lifecycleCompiler : [group: 'androidx.lifecycle', name: 'lifecycle-compiler', version: lifecycleVersion]
+    ]
+
+    def coroutineLibs = [
+            coroutineCore   : [group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: coroutineVersion],
+            coroutineAndroid: [group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-android', version: coroutineVersion]
+    ]
+
+    def roomLibs = [
+            roomRuntime : [group: 'androidx.room', name: 'room-runtime', version: roomVersion],
+            roomSupport : [group: 'androidx.room', name: 'room-ktx', version: roomVersion],
+            roomCompiler: [group: 'androidx.room', name: 'room-compiler', version: roomVersion],
+    ]
+
+    def googlePlayLibs = [
+            playCore: [group: 'com.google.android.play', name: 'core', version: '1.7.3']
+    ]
+
+    def glideLibs = [
+            glide        : [group: 'com.github.bumptech.glide', name: 'glide', version: glideVersion],
+            glideCompiler: [group: 'com.github.bumptech.glide', name: 'compiler', version: glideVersion]
+    ]
+
+    def dependencyInjectionLibs = [
+            daggerCore     : [group: 'com.google.dagger', name: 'dagger', version: daggerVersion],
+            daggerAndroid  : [group: 'com.google.dagger', name: 'dagger-android', version: daggerVersion],
+            daggerCompiler : [group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion],
+            daggerProcessor: [group: 'com.google.dagger', name: 'dagger-android-processor', version: daggerVersion],
+            daggerSupport  : [group: 'com.google.dagger', name: 'dagger-android-support', version: daggerVersion],
+            javax          : [group: 'javax.inject', name: 'javax.inject', version: javaxVersion]
+    ]
+
+    def loggingLibs = [
+            timber: [group: 'com.jakewharton.timber', name: 'timber', version: timberVersion]
+    ]
+
+    def deeplinkLibs = [
+            deeplinkDispatch         : [group: 'com.airbnb', name: 'deeplinkdispatch', version: deeplinkDispatchVersion],
+            deeplinkdispatchProcessor: [group: 'com.airbnb', name: 'deeplinkdispatch-processor', version: deeplinkDispatchVersion]
+    ]
+
+    def testLibs = [
+            junit  : [group: 'junit', name: 'junit', version: jUnitVersion],
+            mockito: [group: 'org.mockito', name: 'mockito-core', version: mockitoVersion]
+    ]
+
+    appDependencies = [
+            [configuration: "implementation", dependency: androidLibs.androidCore],
+            [configuration: "implementation", dependency: androidLibs.appCompat],
+            [configuration: "implementation", dependency: androidLibs.constraintLayout],
+            [configuration: "implementation", dependency: androidLibs.materialDesign],
+            [configuration: "implementation", dependency: deeplinkLibs.deeplinkDispatch],
+            [configuration: "kapt", dependency: deeplinkLibs.deeplinkdispatchProcessor],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerCore],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerAndroid],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerSupport],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.javax],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerProcessor],
+            [configuration: "implementation", dependency: loggingLibs.timber],
+            [configuration: "testImplementation", dependency: testLibs.junit],
+            [configuration: "testImplementation", dependency: testLibs.mockito]
+    ]
+
+    navigationDependencies = [
+            [configuration: "implementation", dependency: androidLibs.appCompat],
+            [configuration: "implementation", dependency: androidLibs.androidCore],
+            [configuration: "implementation", dependency: deeplinkLibs.deeplinkDispatch],
+            [configuration: "kapt", dependency: deeplinkLibs.deeplinkdispatchProcessor],
+    ]
+
+    coreDependencies = [
+            [configuration: "implementation", dependency: androidLibs.androidCore],
+            [configuration: "implementation", dependency: androidLibs.appCompat],
+            [configuration: "implementation", dependency: androidLibs.materialDesign],
+            [configuration: "implementation", dependency: securityLibs.securityCrypto],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerCore],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerAndroid],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerSupport],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.javax],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleViewmodel],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleRuntime],
+            [configuration: "implementation", dependency: coroutineLibs.coroutineCore],
+            [configuration: "implementation", dependency: coroutineLibs.coroutineAndroid],
+            [configuration: "api", dependency: roomLibs.roomRuntime],
+            [configuration: "implementation", dependency: roomLibs.roomSupport],
+            [configuration: "implementation", dependency: glideLibs.glide],
+            [configuration: "kapt", dependency: roomLibs.roomCompiler],
+            [configuration: "kapt", dependency: glideLibs.glideCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerProcessor],
+            [configuration: "api", dependency: networkLibs.retrofit],
+            [configuration: "api", dependency: networkLibs.retrofitAdapter],
+            [configuration: "api", dependency: networkLibs.retrofitConverter],
+            [configuration: "api", dependency: networkLibs.moshi],
+            [configuration: "api", dependency: networkLibs.moshiKotlin],
+            [configuration: "api", dependency: networkLibs.okhttp],
+    ]
+
+    homeDependencies = [
+            [configuration: "implementation", dependency: androidLibs.androidCore],
+            [configuration: "implementation", dependency: androidLibs.appCompat],
+            [configuration: "implementation", dependency: androidLibs.constraintLayout],
+            [configuration: "implementation", dependency: androidLibs.materialDesign],
+            [configuration: "implementation", dependency: androidLibs.swiperefreshlayout],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerCore],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerAndroid],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerSupport],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.javax],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleViewmodel],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleRuntime],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleExt],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleLivedata],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleLivedata],
+            [configuration: "implementation", dependency: googlePlayLibs.playCore],
+            [configuration: "kapt", dependency: lifecycleLibs.lifecycleCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerProcessor],
+            [configuration: "implementation", dependency: loggingLibs.timber],
+            [configuration: "testImplementation", dependency: testLibs.junit],
+            [configuration: "testImplementation", dependency: testLibs.mockito]
+    ]
+
+    detailDependencies = [
+            [configuration: "implementation", dependency: androidLibs.androidCore],
+            [configuration: "implementation", dependency: androidLibs.appCompat],
+            [configuration: "implementation", dependency: androidLibs.constraintLayout],
+            [configuration: "implementation", dependency: androidLibs.materialDesign],
+            [configuration: "implementation", dependency: deeplinkLibs.deeplinkDispatch],
+            [configuration: "kapt", dependency: deeplinkLibs.deeplinkdispatchProcessor],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerCore],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerAndroid],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerSupport],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.javax],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleViewmodel],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleRuntime],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleExt],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleLivedata],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleLivedata],
+            [configuration: "kapt", dependency: lifecycleLibs.lifecycleCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerProcessor],
+            [configuration: "implementation", dependency: loggingLibs.timber],
+            [configuration: "testImplementation", dependency: testLibs.junit],
+            [configuration: "testImplementation", dependency: testLibs.mockito]
+    ]
+
+    favouriteDependencies = [
+            [configuration: "implementation", dependency: androidLibs.androidCore],
+            [configuration: "implementation", dependency: androidLibs.appCompat],
+            [configuration: "implementation", dependency: androidLibs.constraintLayout],
+            [configuration: "implementation", dependency: androidLibs.materialDesign],
+            [configuration: "implementation", dependency: deeplinkLibs.deeplinkDispatch],
+            [configuration: "kapt", dependency: deeplinkLibs.deeplinkdispatchProcessor],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerCore],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerAndroid],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.daggerSupport],
+            [configuration: "implementation", dependency: dependencyInjectionLibs.javax],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleViewmodel],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleRuntime],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleExt],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleLivedata],
+            [configuration: "implementation", dependency: lifecycleLibs.lifecycleLivedata],
+            [configuration: "kapt", dependency: lifecycleLibs.lifecycleCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerCompiler],
+            [configuration: "kapt", dependency: dependencyInjectionLibs.daggerProcessor],
+            [configuration: "implementation", dependency: loggingLibs.timber],
+            [configuration: "testImplementation", dependency: testLibs.junit],
+            [configuration: "testImplementation", dependency: testLibs.mockito]
+    ]
+}

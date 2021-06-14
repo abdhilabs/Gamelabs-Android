@@ -1,0 +1,24 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+include ':core-android'
+project(':core-android').projectDir = new File("./core/core-android")
+
+include ':home'
+project(':home').projectDir = new File("./features/home")
+
+include ':favourite'
+project(':favourite').projectDir = new File("./features/favourite")
+
+include ':detail'
+project(':detail').projectDir = new File("./features/detail")
+
+include ':navigation'
+project(':navigation').projectDir = new File("./core/navigation")
+
+include ':app'
+rootProject.name = "Gamelabs"

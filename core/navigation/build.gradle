@@ -1,0 +1,7 @@
+apply from: "$rootDir/build-systems/apps-library.gradle"
+dependencies {
+    implementation project(":core-android")
+    rootProject.navigationDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+}

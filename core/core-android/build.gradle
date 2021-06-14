@@ -1,0 +1,6 @@
+apply from: "$rootDir/build-systems/apps-library.gradle"
+dependencies {
+    rootProject.coreDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+}

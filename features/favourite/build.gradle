@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    def globalConfig = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfig.androidCompileSdkVersion
+    buildToolsVersion globalConfig.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.abdhilabs.gamelabs.favourite"
+        minSdkVersion globalConfig.androidMinSdkVersion
+        targetSdkVersion globalConfig.androidTargerSdkVersion
+        versionCode globalConfig.androidVersionCode
+        versionName globalConfig.androidVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(":app")
+    implementation project(":core-android")
+    implementation project(":navigation")
+    rootProject.favouriteDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+}
