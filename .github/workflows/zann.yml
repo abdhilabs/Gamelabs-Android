@@ -1,0 +1,25 @@
+name: Zann Agent
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled]
+  pull_request:
+    types: [opened, synchronize, labeled, unlabeled]
+  issue_comment:
+    types: [created]
+
+jobs:
+  process:
+    if: >
+      github.event_name != 'issue_comment' ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, 'Zann'))
+    runs-on: [self-hosted, macOS]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Zann Agent
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          zann process \
+            --event "${{ github.event_name }}" \
+            --payload "$(cat "$GITHUB_EVENT_PATH")"
