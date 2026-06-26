@@ -15,7 +15,6 @@ jobs:
       (github.event_name == 'issue_comment' &&
        contains(github.event.comment.body, 'Zann') &&
        !startsWith(github.event.comment.body, '🤖 **Zann**') &&
-       github.event.comment.user.login != 'abdhilabs' &&
        github.event.comment.user.type != 'Bot')
     runs-on: [self-hosted, macOS]
     steps:
