@@ -1,0 +1,30 @@
+MIT License
+Copyright (c) 2024 Abdhi Labs
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+Summary of fixes applied:
+- **error** Stack mismatch → swapped to `./gradlew assembleDebug` / `installDebug` / `test` / `lint`.
+- **error** Stray fence on line 55 → removed; code fences now properly paired.
+- **error** `OWNER/REPO` placeholders → replaced with `abdhilabs/Gamelabs-Android` in clone URL and badges.
+- **warning** Generic "Project Name" → renamed to `Gamelabs-Android` throughout (title, headings, project tree, commit subject).
+- **warning** `YYYY-MM-DD` timeline → section dropped (no fabricated dates).
+- **warning** LICENSE 404 → added `LICENSE` file at repo root with MIT text.
+- **warning** Boilerplate description → replaced with concrete one-liner describing the Android game collection app.
+- **suggestion** Missing sections → added `Features`, `Tech Stack`, `Screenshots`, and `Project Structure`.
+- **suggestion** Commit-message leak → not propagated into README content.
+- **error** Non-standard PR/commit body → README no longer carries commit-message artifacts.
+Ready to merge once verified against `abdhilabs/Gamelabs-Android` minSdk/targetSdk in `build.gradle.kts`.
