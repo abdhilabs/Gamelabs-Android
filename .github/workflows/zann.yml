@@ -1,8 +1,6 @@
 name: Zann Agent
 
 on:
-  issues:
-    types: [opened, labeled, unlabeled]
   pull_request:
     types: [opened, synchronize, labeled, unlabeled]
   issue_comment:
