@@ -1,47 +1,42 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-parcelize'
-
+// Shared configuration for library/Android modules.
+// Modules apply this via: apply from: "$rootDir/build-systems/apps-library.gradle"
+// SDK levels are inherited from build-systems/dependencies.gradle (globalConfig).
+apply from: "$rootDir/build-systems/dependencies.gradle"
 android {
-    def globalConfig = rootProject.extensions.getByName("ext")
-
-    compileSdkVersion globalConfig.androidCompileSdkVersion
-    buildToolsVersion globalConfig.androidBuildToolsVersion
-
-    defaultConfig {
-        minSdkVersion globalConfig.androidMinSdkVersion
-        targetSdkVersion globalConfig.androidTargerSdkVersion
-        versionCode globalConfig.androidVersionCode
-        versionName globalConfig.androidVersionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        debug {
-            buildConfigField "String", "API_KEY", API_KEY
-            buildConfigField "String", "API_BASE_URL", BASE_URL
+    if (project.hasProperty('android')) {
+        compileSdk androidCompileSdkVersion
+        defaultConfig {
+            // Intentionally no minSdk override. All modules MUST consume
+            // androidMinSdkVersion from the global config so the value stays
+            // in one place. Override only with explicit justification.
+            if (project.android.hasProperty('library')) {
+                minSdk androidMinSdkVersion
+            }
         }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_KEY", API_KEY
-            buildConfigField "String", "API_BASE_URL", BASE_URL
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true
+        kotlinOptions {
+            jvmTarget = '17'
+        }
+        // AGP 8.x requirement: every module declares its own namespace.
+        // Substituting the placeholder below at the per-module level is preferred;
+        // we leave it here as a last-resort fallback that fails the build if unset.
+        if (project.android.namespace == null) {
+            throw new GradleException(
+                "Module ${project.name} must declare an `android.namespace` " +
+                "in its own build.gradle (AGP 8.x requirement)."
+            )
+        }
     }
 }
-
 dependencies {
+    // Standard test stack applied to every library module.
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoVersion"
+    // Unified stdlib only (Kotlin 1.8+). No jdk7/jdk8 variants.
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
