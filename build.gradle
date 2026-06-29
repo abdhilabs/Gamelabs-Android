@@ -1,27 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-// Toolchain: AGP 8.5.2 + Kotlin 2.0.21. Requires Gradle 8.7+ and JDK 17.
-// Bumped from AGP 4.2.1 + Kotlin 1.x as part of minSdk 22 -> 28 migration.
 buildscript {
-    ext.kotlin_version = '2.0.21'
+    ext.kotlin_version = '1.9.24'
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'com.android.tools.build:gradle:8.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // KSP replaces kapt for annotation processing under Kotlin 2.x.
-        classpath 'com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.21-1.0.28'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.51.1'
     }
-}
-allprojects {
-    // Convention plugins / shared configuration is applied via
-    // `apply from: 'build-systems/apps-library.gradle'` in each module.
-    // SDK levels and library versions live in build-systems/dependencies.gradle.
-    // Repositories are declared via pluginManagement / dependencyResolutionManagement
-    // inside settings.gradle (Gradle 7+ recommended layout). See settings.gradle.
 }
 tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
+// AndroidX migration flags belong at the root, not per module.
+android.useAndroidX = true
+android.enableJetifier = true
