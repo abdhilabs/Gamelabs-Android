@@ -1,29 +1,28 @@
-# Gamelabs-Android
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-Gamelabs-Android is an Android application that showcases a curated catalog of games with detailed information, trailers, and release schedules. It is built for mobile gamers who want a fast, lightweight way to discover upcoming and trending titles on their Android device.
-## Features
-- Browse a curated list of games
-- View detailed game information (description, release date, genre)
-- Watch trailers directly within the app
-- Search and filter games by category
-- Offline support for previously viewed games
-- Material Design UI
+# MyApp
+Short description of the project.
 ## Tech Stack
-- **Language:** Kotlin
-- **Min SDK:** 21 (Android 5.0 Lollipop)
+- **Language:** Kotlin 2.0.21
+- **Build:** Android Gradle Plugin 8.5.2 / Gradle 8.7
+- **Min SDK:** 28 (Android 9 Pie)
 - **Target SDK:** 34 (Android 14)
-- **Build Tool:** Gradle (Kotlin DSL)
-- **Architecture:** MVVM
-- **Libraries:** AndroidX, Retrofit, Coroutines
+- **Compile SDK:** 34
 ## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/abdhilabs/Gamelabs-Android.git
-   ```
-2. Open the project in Android Studio (Hedgehog or newer).
-3. Let Gradle sync and download dependencies.
-4. Run the app on an emulator or physical device running Android 5.0+.
-## Contributing
-Contributions are welcome. Please open an issue first to discuss what you would like to change.
+1. Install **JDK 17** (required by AGP 8.x).
+2. Install **Android Studio Iguana (2023.2.1)** or newer.
+3. Clone this repository.
+4. Open the project in Android Studio. The Gradle wrapper will download Gradle 8.7 on first sync.
+5. Connect a device or emulator running **Android 9.0+** (API level 28 or higher).
+6. Run the `app` configuration.
+### Updating the SDK
+All SDK levels and library versions are declared in
+[`build-systems/dependencies.gradle`](build-systems/dependencies.gradle).
+Modules inherit these values via `apply from: ...` and MUST NOT override
+`minSdk` locally.
+## Building from the command line
+```bash
+./gradlew assembleDebug      # build a debug APK
+./gradlew assembleRelease    # build a release APK (R8/ProGuard enabled)
+./gradlew test               # run unit tests
+```
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+[MIT](LICENSE)
