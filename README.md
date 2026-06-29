@@ -1,28 +1,52 @@
-# MyApp
-Short description of the project.
+# Gamelabs-Android
+Gamelabs is a sample Android application that showcases game discovery features built with modern Android architecture components. Browse popular games, search for your favorites, and view detailed information.
+## Features
+- Browse popular games
+- Search for games by name
+- View game details
+- Mark games as favourites (offline support)
+- Material Design components
+- MVVM architecture
+- Hilt for dependency injection
+- Modular architecture (core-android, home, detail, favourite)
 ## Tech Stack
-- **Language:** Kotlin 2.0.21
-- **Build:** Android Gradle Plugin 8.5.2 / Gradle 8.7
-- **Min SDK:** 28 (Android 9 Pie)
-- **Target SDK:** 34 (Android 14)
-- **Compile SDK:** 34
-## Installation
-1. Install **JDK 17** (required by AGP 8.x).
-2. Install **Android Studio Iguana (2023.2.1)** or newer.
-3. Clone this repository.
-4. Open the project in Android Studio. The Gradle wrapper will download Gradle 8.7 on first sync.
-5. Connect a device or emulator running **Android 9.0+** (API level 28 or higher).
-6. Run the `app` configuration.
-### Updating the SDK
-All SDK levels and library versions are declared in
-[`build-systems/dependencies.gradle`](build-systems/dependencies.gradle).
-Modules inherit these values via `apply from: ...` and MUST NOT override
-`minSdk` locally.
-## Building from the command line
-```bash
-./gradlew assembleDebug      # build a debug APK
-./gradlew assembleRelease    # build a release APK (R8/ProGuard enabled)
-./gradlew test               # run unit tests
-```
+- Kotlin
+- Android Jetpack (ViewModel, LiveData, Navigation, Room)
+- Retrofit + OkHttp
+- Glide for image loading
+- Hilt for DI
+- Coroutines & Flow
+- Modular architecture
+## Screenshots
+![Home](screenshots/home.png)
+![Detail](screenshots/detail.png)
+![Favourite](screenshots/favourite.png)
+## Requirements
+- Android Studio Hedgehog | 2023.1.1 or later
+- JDK 17
+- Android SDK Platform 34
+## Build
+1. Clone the repository
+2. Open in Android Studio
+3. Sync Gradle
+4. Run on emulator or device
+## Minimum SDK
+This project requires a minimum SDK of 28 (Android 9.0 Pie).
 ## License
-[MIT](LICENSE)
+MIT License
+Copyright (c) 2024 Abdhi Saputra
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
