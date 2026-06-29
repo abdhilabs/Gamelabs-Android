@@ -1,3 +1,13 @@
+// Gradle 8.x settings file.
+// Migrated as part of AGP 8.5.2 + minSdk 28 upgrade.
+// Uses modern pluginManagement + dependencyResolutionManagement blocks.
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -5,20 +15,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-include ':core-android'
-project(':core-android').projectDir = new File("./core/core-android")
-
-include ':home'
-project(':home').projectDir = new File("./features/home")
-
-include ':favourite'
-project(':favourite').projectDir = new File("./features/favourite")
-
-include ':detail'
-project(':detail').projectDir = new File("./features/detail")
-
-include ':navigation'
-project(':navigation').projectDir = new File("./core/navigation")
-
+rootProject.name = 'MyApp'
 include ':app'
-rootProject.name = "Gamelabs"
+// Add additional modules here as the project grows.
+// include ':feature:auth'
+// include ':library:core'
