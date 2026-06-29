@@ -1,57 +1,92 @@
+// App module build file.
+// Kotlin 2.0+ unified stdlib: `kotlin-stdlib-jdk7` / `kotlin-stdlib-jdk8` removed.
+// AGP 8.x requires `namespace` (no more manifest package).
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
 }
-
+apply from: "$rootDir/build-systems/dependencies.gradle"
 android {
-    def globalConfig = rootProject.extensions.getByName("ext")
-
-    compileSdkVersion globalConfig.androidCompileSdkVersion
-    buildToolsVersion globalConfig.androidBuildToolsVersion
-
+    namespace 'com.example.app'
+    compileSdk androidCompileSdkVersion
     defaultConfig {
-        applicationId "com.abdhilabs.gamelabs"
-        minSdkVersion globalConfig.androidMinSdkVersion
-        targetSdkVersion globalConfig.androidTargerSdkVersion
-        versionCode globalConfig.androidVersionCode
-        versionName globalConfig.androidVersionName
-        resValue "string", "app_name", "Gamelabs"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId 'com.example.app'
+        // Inherited from globalConfig. Do NOT override here.
+        minSdk androidMinSdkVersion
+        targetSdk androidTargetSdkVersion
+        versionCode 1
+        versionName '1.0.0'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        vectorDrawables.useSupportLibrary = true
     }
-
     buildTypes {
         debug {
-            applicationIdSuffix ".debug"
-            buildConfigField "String", "API_KEY", API_KEY
-            buildConfigField "String", "API_BASE_URL", BASE_URL
+            minifyEnabled false
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_KEY", API_KEY
-            buildConfigField "String", "API_BASE_URL", BASE_URL
+            // R8 full mode is default under AGP 8.x.
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+        // Kotlin 2.0 enables the new K2 compiler by default.
     }
     buildFeatures {
         viewBinding true
+        // compose true   // uncomment if module uses Compose
     }
-    dynamicFeatures = [':favourite']
+    // AGP 8.x: packaging options renamed -> packaging.
+    packaging {
+        resources {
+            excludes += [
+                '/META-INF/{AL2.0,LGPL2.1}',
+                '/META-INF/DEPENDENCIES',
+                '/META-INF/LICENSE*',
+                '/META-INF/NOTICE*'
+            ]
+        }
+    }
+    // Disable Jetifier (legacy support-lib migration). Not needed when all
+    // transitive deps already target AndroidX, which is the case at minSdk 28.
+    android.useAndroidX = true
+    android.enableJetifier = false
 }
-
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(":core-android")
-    implementation project(":home")
-    implementation project(":detail")
-    rootProject.appDependencies.each {
-        add(it.configuration, it.dependency, it.options)
-    }
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // NOTE: kotlin-stdlib-jdk7 / kotlin-stdlib-jdk8 intentionally omitted.
+    //       Those artifacts were merged into kotlin-stdlib in Kotlin 1.8+.
+    implementation "androidx.core:core-ktx:$androidxCoreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$androidxAppcompatVersion"
+    implementation "androidx.activity:activity-ktx:$androidxActivityVersion"
+    implementation "androidx.fragment:fragment-ktx:$androidxFragmentVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintlayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidxRecyclerViewVersion"
+    implementation "com.google.android.material:material:$materialDesignVersion"
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidxLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycleVersion"
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    // Networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    // Logging
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+    // Image loading
+    implementation "io.coil-kt:coil:$coilVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoVersion"
 }
