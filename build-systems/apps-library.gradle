@@ -1,42 +1,6 @@
-// Shared configuration for library/Android modules.
-// Modules apply this via: apply from: "$rootDir/build-systems/apps-library.gradle"
-// SDK levels are inherited from build-systems/dependencies.gradle (globalConfig).
-apply from: "$rootDir/build-systems/dependencies.gradle"
 android {
-    if (project.hasProperty('android')) {
-        compileSdk androidCompileSdkVersion
-        defaultConfig {
-            // Intentionally no minSdk override. All modules MUST consume
-            // androidMinSdkVersion from the global config so the value stays
-            // in one place. Override only with explicit justification.
-            if (project.android.hasProperty('library')) {
-                minSdk androidMinSdkVersion
-            }
-        }
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_17
-            targetCompatibility JavaVersion.VERSION_17
-        }
-        kotlinOptions {
-            jvmTarget = '17'
-        }
-        // AGP 8.x requirement: every module declares its own namespace.
-        // Substituting the placeholder below at the per-module level is preferred;
-        // we leave it here as a last-resort fallback that fails the build if unset.
-        if (project.android.namespace == null) {
-            throw new GradleException(
-                "Module ${project.name} must declare an `android.namespace` " +
-                "in its own build.gradle (AGP 8.x requirement)."
-            )
-        }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
     }
-}
-dependencies {
-    // Standard test stack applied to every library module.
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "io.mockk:mockk:$mockkVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoVersion"
-    // Unified stdlib only (Kotlin 1.8+). No jdk7/jdk8 variants.
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
