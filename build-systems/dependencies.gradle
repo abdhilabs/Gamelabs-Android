@@ -1,71 +1,10 @@
-// Global project dependencies and version constants.
-// Single source of truth for SDK levels and library versions consumed by all modules
-// via rootProject.ext or extra properties (see apps-library.gradle).
-//
-// NOTE: minSdk bumped from 22 -> 28. Several legacy stdlib artifacts removed in
-// favor of unified `kotlin-stdlib` (Kotlin 1.8+). AGP/Kotlin combo requires
-// JDK 17 and Gradle 8.x; see root build.gradle.
 ext {
-    // ---- SDK levels ----
-    androidMinSdkVersion = 28
-    androidTargetSdkVersion = 34
-    androidCompileSdkVersion = 34
-    androidBuildToolsVersion = '34.0.0'
-    // ---- Toolchain (kept in sync with root build.gradle) ----
-    kotlin_version = '2.0.21'
-    agp_version = '8.5.2'
-    // ---- AndroidX core ----
-    androidxCoreKtxVersion = '1.13.1'
-    androidxAppcompatVersion = '1.7.0'
-    androidxActivityVersion = '1.9.3'
-    androidxFragmentVersion = '1.8.5'
-    androidxAnnotationVersion = '1.9.1'
-    androidxCollectionVersion = '1.4.0'
-    // ---- AndroidX UI ----
-    androidxConstraintlayoutVersion = '2.1.4'
-    androidxRecyclerviewVersion = '1.3.2'
-    androidxSwiperefreshlayoutVersion = '1.1.0'
-    androidxViewpager2Version = '1.1.0'
-    androidxPreferenceVersion = '1.2.1'
-    materialDesignVersion = '1.12.0'
-    // ---- AndroidX Architecture / Lifecycle ----
-    androidxLifecycleVersion = '2.8.7'
-    androidxNavigationVersion = '2.8.4'
-    androidxRoomVersion = '2.6.1'
-    androidxWorkVersion = '2.9.1'
-    androidxPagingVersion = '3.3.3'
-    // ---- AndroidX Compose ----
-    androidxComposeBomVersion = '2024.10.01'
-    androidxComposeCompilerVersion = '1.5.15' // bundled with Kotlin 2.0 via compose plugin
-    // ---- Kotlin / Coroutines ----
-    coroutinesVersion = '1.8.1'
-    // ---- Networking ----
-    retrofitVersion = '2.11.0'
-    okhttpVersion = '4.12.0'
-    moshiVersion = '1.15.1'
-    gsonVersion = '2.11.0'
-    // ---- Dependency Injection ----
-    hiltVersion = '2.52'
-    hiltAndroidxCompilerVersion = '1.2.0'
-    // ---- Image loading ----
-    coilVersion = '2.7.0'
-    glideVersion = '4.16.0'
-    // ---- Testing ----
-    junitVersion = '4.13.2'
-    androidxJunitVersion = '1.2.1'
-    androidxEspressoVersion = '3.6.1'
-    mockkVersion = '1.13.13'
-    // ---- Third-party ----
-    timberVersion = '5.0.1'
-    rxjavaVersion = '3.1.8'
-    rxandroidVersion = '3.0.2'
-    // ---- Google Play Services ----
-    playServicesBaseVersion = '18.5.0'
-    firebaseBomVersion = '33.5.1'
-    // Legacy stdlib artifacts intentionally omitted. Since Kotlin 1.8,
-    // `kotlin-stdlib-jdk7` / `kotlin-stdlib-jdk8` are merged into the single
-    // `kotlin-stdlib` artifact. Modules must NOT depend on the old variants.
+    // SDK versions — only bump minSdk in this PR; align compile/target to match.
+    compileSdkVersion = 34
+    targetSdkVersion = 34
+    minSdkVersion = 28
+    // Build tools
+    buildToolsVersion = '34.0.0'
+    // Kotlin / AGP bumps intentionally deferred to a separate PR to keep this
+    // change focused on the minimum SDK bump.
 }
-// Optional: helper that modules can apply to keep minSdk enforcement uniform.
-// NOTE: Per the implementation plan, modules MUST NOT override minSdk directly.
-//       All modules inherit from this globalConfig (see apps-library.gradle).
