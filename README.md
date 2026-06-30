@@ -10,7 +10,7 @@ Gamelabs-Android is an Android application that showcases a curated catalog of g
 - Material Design UI
 ## Tech Stack
 - **Language:** Kotlin
-- **Min SDK:** 21 (Android 5.0 Lollipop)
+- **Min SDK:** 28 (Android 9.0 Pie)
 - **Target SDK:** 34 (Android 14)
 - **Build Tool:** Gradle (Kotlin DSL)
 - **Architecture:** MVVM
@@ -22,7 +22,7 @@ Gamelabs-Android is an Android application that showcases a curated catalog of g
    ```
 2. Open the project in Android Studio (Hedgehog or newer).
 3. Let Gradle sync and download dependencies.
-4. Run the app on an emulator or physical device running Android 5.0+.
+4. Run the app on an emulator or physical device running Android 9.0+.
 ## Contributing
 Contributions are welcome. Please open an issue first to discuss what you would like to change.
 ## License
