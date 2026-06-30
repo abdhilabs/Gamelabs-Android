@@ -1,36 +1,19 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-}
-
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 android {
-    def globalConfig = rootProject.extensions.getByName("ext")
-
-    compileSdkVersion globalConfig.androidCompileSdkVersion
-    buildToolsVersion globalConfig.androidBuildToolsVersion
-
+    namespace 'com.example.app'
+    compileSdk 34
     defaultConfig {
-        applicationId "com.abdhilabs.gamelabs"
-        minSdkVersion globalConfig.androidMinSdkVersion
-        targetSdkVersion globalConfig.androidTargerSdkVersion
-        versionCode globalConfig.androidVersionCode
-        versionName globalConfig.androidVersionName
-        resValue "string", "app_name", "Gamelabs"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId "com.example.app"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
     }
-
     buildTypes {
-        debug {
-            applicationIdSuffix ".debug"
-            buildConfigField "String", "API_KEY", API_KEY
-            buildConfigField "String", "API_BASE_URL", BASE_URL
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_KEY", API_KEY
-            buildConfigField "String", "API_BASE_URL", BASE_URL
         }
     }
     compileOptions {
@@ -40,18 +23,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
-    dynamicFeatures = [':favourite']
 }
-
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(":core-android")
-    implementation project(":home")
-    implementation project(":detail")
-    rootProject.appDependencies.each {
-        add(it.configuration, it.dependency, it.options)
-    }
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
