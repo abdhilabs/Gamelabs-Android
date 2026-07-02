@@ -10,7 +10,7 @@ Gamelabs-Android is an Android application that showcases a curated catalog of g
 - Material Design UI
 ## Tech Stack
 - **Language:** Kotlin
-- **Min SDK:** 21 (Android 5.0 Lollipop)
+- **Min SDK:** 28 (Android 9.0 Pie)
 - **Target SDK:** 34 (Android 14)
 - **Build Tool:** Gradle (Kotlin DSL)
 - **Architecture:** MVVM
